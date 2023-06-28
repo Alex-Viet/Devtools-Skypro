@@ -15,7 +15,7 @@ body {
 .info {
   width: 480px;
   height: 459px;
-  margin: 158px 272px;
+  margin: 158px auto;
   border-radius: 12px;
   background-color: #C2F5FF;
   display: flex;
