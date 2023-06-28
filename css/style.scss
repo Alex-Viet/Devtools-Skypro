@@ -1,7 +1,16 @@
+@font-face {
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2) format("woff2");
+    font-display: swap;
+}
+
 body {
     margin: 0;
     padding: 0;
     background-color: #004980;
+    font-family: StratosSkyeng;
 }
 
 .info {
@@ -20,6 +29,7 @@ body {
         text-align: center;
         font-size: 40px;
         line-height: 48px;
+        margin-top: 52px;
     }
 
     &__level {
@@ -34,6 +44,7 @@ body {
         height: 98px;
         background-color: #fff;
         border-radius: 12px;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -41,11 +52,17 @@ body {
         font-size: 64px;
         line-height: 72px;
         color: #0080C1;
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid #000;
+        }
     }
 
     &__go {
+        font-family: StratosSkyeng;
         width: 246px;
-        height: 48px;
+        height: 50px;
         margin-top: 67px;
         margin-bottom: 50px;
         background-color: #7AC100;
@@ -55,5 +72,6 @@ body {
         color: #fff;
         font-size: 24px;
         line-height: 32px;
+        cursor: pointer;
     }
 }
