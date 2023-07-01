@@ -29,11 +29,22 @@ body {
   line-height: 48px;
   margin-top: 52px;
 }
+.info__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .info__level {
   display: flex;
   gap: 26px;
   flex-direction: row;
   justify-content: center;
+}
+.info__level input[type=radio] {
+  display: none;
+}
+.info__level input[type=radio]:checked + label {
+  border: 1px solid #000;
 }
 .info__level-choice {
   width: 98px;
