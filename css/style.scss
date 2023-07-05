@@ -1,10 +1,11 @@
 $border: 1px solid #000;
 
 @font-face {
-    font-family: "StratosSkyeng";
+    font-family: 'StratosSkyeng';
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2) format("woff2");
+    src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2)
+        format('woff2');
     font-display: swap;
 }
 
@@ -20,11 +21,10 @@ body {
     height: 459px;
     margin: 158px auto;
     border-radius: 12px;
-    background-color: #C2F5FF;
+    background-color: #c2f5ff;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 
     &__title {
         color: #004980;
@@ -46,11 +46,11 @@ body {
         flex-direction: row;
         justify-content: center;
 
-        & input[type=radio] {
+        & input[type='radio'] {
             display: none;
         }
 
-        & input[type=radio]:checked+label {
+        & input[type='radio']:checked + label {
             border: $border;
         }
     }
@@ -67,7 +67,7 @@ body {
         text-align: center;
         font-size: 64px;
         line-height: 72px;
-        color: #0080C1;
+        color: #0080c1;
         cursor: pointer;
 
         &:hover {
@@ -81,7 +81,7 @@ body {
         height: 50px;
         margin-top: 67px;
         margin-bottom: 50px;
-        background-color: #7AC100;
+        background-color: #7ac100;
         border: none;
         border-radius: 12px;
         box-sizing: border-box;
