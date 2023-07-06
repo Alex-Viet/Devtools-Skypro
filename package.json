@@ -1,15 +1,19 @@
 {
-    "name": "devtools-skypro",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --write ."
-    },
-    "author": "",
-    "license": "ISC",
-    "devDependencies": {
-        "prettier": "^3.0.0"
-    }
+  "name": "devtools-skypro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write .",
+    "lint:js": "eslint ./**/*.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^3.0.0"
+  }
 }
