@@ -1,26 +1,9 @@
-let gameComps = {
+import { renderStartPage } from './components/start-page-component.js';
+
+export let gameComps = {
   difficultyLevel: '',
 };
 
-const goButton = document.getElementById('button-go');
-const difLevelBtnElems = document.querySelectorAll('input');
+const gameContainer = document.getElementById('app');
 
-for (const difLevelBtnElem of difLevelBtnElems) {
-  difLevelBtnElem.addEventListener('click', () => {
-    gameComps.difficultyLevel = difLevelBtnElem.value;
-
-    goButton.addEventListener('click', () => {
-      alert(
-        `Далее будет запускаться игра в зависимости от уровня сложности: ${gameComps.difficultyLevel}`,
-      );
-    });
-  });
-}
-
-// function func_my(a, b) {
-//   if (a == b) {
-//     a + b;
-//   }
-// }
-
-// func_my();
+renderStartPage(gameContainer);

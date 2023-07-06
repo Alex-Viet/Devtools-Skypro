@@ -5,31 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Инструменты разработки</title>
+    <title>Игра "Найди пару"</title>
   </head>
-
   <body>
-    <div class="container">
-      <div class="info">
-        <p class="info__title">
-          Выбери<br />
-          сложность
-        </p>
-        <form class="info__form">
-          <div class="info__level">
-            <input type="radio" name="radio" value="easy" id="dif-easy" />
-            <label for="dif-easy" class="info__level-choice">1</label>
-            <input type="radio" name="radio" value="medium" id="dif-med" />
-            <label for="dif-med" class="info__level-choice">2</label>
-            <input type="radio" name="radio" value="hard" id="dif-hard" />
-            <label for="dif-hard" class="info__level-choice">3</label>
-          </div>
-          <div>
-            <button type="submit" class="info__go" id="button-go">Старт</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <script src="./js/index.js"></script>
+    <div class="container" id="app"></div>
+
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>
