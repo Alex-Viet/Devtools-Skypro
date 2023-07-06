@@ -33,7 +33,7 @@ export const renderStartPage = (appElem) => {
 
       goButton.addEventListener('click', () => {
         alert(
-          `Далее будет запускаться игра в зависимости от уровня сложности: ${gameComps.difficultyLevel}`,
+          `Далее будет запускаться игра в зависимости от уровня сложности: ${gameComps.difficultyLevel}`
         );
       });
     });

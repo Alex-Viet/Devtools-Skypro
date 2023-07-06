@@ -1,10 +1,12 @@
 @font-face {
-  font-family: "StratosSkyeng";
+  font-family: StratosSkyeng;
   font-style: normal;
   font-weight: 400;
-  src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2) format("woff2");
+  src: url('../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2')
+    format('woff2');
   font-display: swap;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -22,6 +24,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .info__title {
   color: #004980;
   text-align: center;
@@ -29,23 +32,28 @@ body {
   line-height: 48px;
   margin-top: 52px;
 }
+
 .info__form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .info__level {
   display: flex;
   gap: 26px;
   flex-direction: row;
   justify-content: center;
 }
-.info__level input[type=radio] {
+
+.info__level input[type='radio'] {
   display: none;
 }
-.info__level input[type=radio]:checked + label {
+
+.info__level input[type='radio']:checked + label {
   border: 1px solid #000;
 }
+
 .info__level-choice {
   width: 98px;
   height: 98px;
@@ -61,9 +69,11 @@ body {
   color: #0080c1;
   cursor: pointer;
 }
+
 .info__level-choice:hover {
   border: 1px solid #000;
 }
+
 .info__go {
   font-family: StratosSkyeng, sans-serif;
   width: 246px;
@@ -78,4 +88,4 @@ body {
   font-size: 24px;
   line-height: 32px;
   cursor: pointer;
-}/*# sourceMappingURL=style.css.map */
+}
