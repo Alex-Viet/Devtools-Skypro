@@ -1,4 +1,9 @@
 $border: 1px solid #000;
+$text-color: #fff;
+
+* {
+  box-sizing: border-box;
+}
 
 @font-face {
   font-family: 'StratosSkyeng';
@@ -14,6 +19,52 @@ body {
   padding: 0;
   background-color: #004980;
   font-family: StratosSkyeng, sans-serif;
+}
+
+.container {
+  padding: 0 25px;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.button {
+  font-family: StratosSkyeng, sans-serif;
+  width: 246px;
+  height: 50px;
+  background-color: #7ac100;
+  border: none;
+  border-radius: 12px;
+  color: $text-color;
+  font-size: 24px;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.header {
+  min-height: 155px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer {
+  width: 155px;
+  height: 91px;
+  color: $text-color;
+
+  &__text {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 57px;
+    font-size: 16px;
+    padding-right: 5px;
+  }
+
+  &__count {
+    font-size: 64px;
+    line-height: 72px;
+  }
 }
 
 .info {
@@ -60,7 +111,6 @@ body {
     height: 98px;
     background-color: #fff;
     border-radius: 12px;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,19 +125,21 @@ body {
     }
   }
 
-  &__go {
-    font-family: StratosSkyeng, sans-serif;
-    width: 246px;
-    height: 50px;
+  &__go-button {
     margin-top: 67px;
     margin-bottom: 50px;
-    background-color: #7ac100;
-    border: none;
-    border-radius: 12px;
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 24px;
-    line-height: 32px;
-    cursor: pointer;
   }
+}
+
+.game-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-column-gap: 9px;
+  grid-row-gap: 10px;
+  margin-bottom: 30px;
+}
+
+.card-back {
+  width: 95px;
+  height: 133px;
 }

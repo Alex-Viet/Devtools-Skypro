@@ -1,17 +1,63 @@
-@font-face {
-  font-family: StratosSkyeng;
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2')
-    format('woff2');
-  font-display: swap;
+* {
+  box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "StratosSkyeng";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2) format("woff2");
+  font-display: swap;
+}
 body {
   margin: 0;
   padding: 0;
   background-color: #004980;
   font-family: StratosSkyeng, sans-serif;
+}
+
+.container {
+  padding: 0 25px;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.button {
+  font-family: StratosSkyeng, sans-serif;
+  width: 246px;
+  height: 50px;
+  background-color: #7ac100;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.header {
+  min-height: 155px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer {
+  width: 155px;
+  height: 91px;
+  color: #fff;
+}
+.timer__text {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 57px;
+  font-size: 16px;
+  padding-right: 5px;
+}
+.timer__count {
+  font-size: 64px;
+  line-height: 72px;
 }
 
 .info {
@@ -24,7 +70,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
 .info__title {
   color: #004980;
   text-align: center;
@@ -32,34 +77,28 @@ body {
   line-height: 48px;
   margin-top: 52px;
 }
-
 .info__form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .info__level {
   display: flex;
   gap: 26px;
   flex-direction: row;
   justify-content: center;
 }
-
-.info__level input[type='radio'] {
+.info__level input[type=radio] {
   display: none;
 }
-
-.info__level input[type='radio']:checked + label {
+.info__level input[type=radio]:checked + label {
   border: 1px solid #000;
 }
-
 .info__level-choice {
   width: 98px;
   height: 98px;
   background-color: #fff;
   border-radius: 12px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,23 +108,23 @@ body {
   color: #0080c1;
   cursor: pointer;
 }
-
 .info__level-choice:hover {
   border: 1px solid #000;
 }
-
-.info__go {
-  font-family: StratosSkyeng, sans-serif;
-  width: 246px;
-  height: 50px;
+.info__go-button {
   margin-top: 67px;
   margin-bottom: 50px;
-  background-color: #7ac100;
-  border: none;
-  border-radius: 12px;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 24px;
-  line-height: 32px;
-  cursor: pointer;
 }
+
+.game-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-column-gap: 9px;
+  grid-row-gap: 10px;
+  margin-bottom: 30px;
+}
+
+.card-back {
+  width: 95px;
+  height: 133px;
+}/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,5 @@
 import { gameComps } from '../index.js';
+import { renderGame } from './game-component.js';
 
 export const renderStartPage = (appElem) => {
   const startPageHtml = `
@@ -17,7 +18,7 @@ export const renderStartPage = (appElem) => {
             <label for="dif-hard" class="info__level-choice">3</label>
           </div>
           <div>
-            <button type="submit" class="info__go" id="button-go">Старт</button>
+            <button type="submit" class="info__go-button button" id="button-go">Старт</button>
           </div>
         </form>
       </div>`;
@@ -28,13 +29,20 @@ export const renderStartPage = (appElem) => {
     difLevelBtnElems = document.querySelectorAll('input');
 
   for (const difLevelBtnElem of difLevelBtnElems) {
-    difLevelBtnElem.addEventListener('click', () => {
+    difLevelBtnElem.addEventListener('click', (event) => {
+      event.stopPropagation();
       gameComps.difficultyLevel = difLevelBtnElem.value;
 
-      goButton.addEventListener('click', () => {
-        alert(
-          `Далее будет запускаться игра в зависимости от уровня сложности: ${gameComps.difficultyLevel}`
-        );
+      goButton.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        if (gameComps.difficultyLevel === 'easy') {
+          renderGame();
+        }
+
+        if (gameComps.difficultyLevel === 'medium') {
+          renderGame();
+        }
       });
     });
   }
