@@ -1,93 +1,187 @@
 $border: 1px solid #000;
+$text-color: #fff;
+
+* {
+  box-sizing: border-box;
+}
 
 @font-face {
-    font-family: "StratosSkyeng";
-    font-style: normal;
-    font-weight: 400;
-    src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2) format("woff2");
-    font-display: swap;
+  font-family: 'StratosSkyeng';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/statosskyeng-v1.001/stratosskyengweb-regular.woff2)
+    format('woff2');
+  font-display: swap;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #004980;
-    font-family: StratosSkyeng;
+  margin: 0;
+  padding: 0;
+  background-color: #004980;
+  font-family: StratosSkyeng, sans-serif;
+}
+
+.container {
+  padding: 0 25px;
+  margin: 0 auto;
+  max-width: 1024px;
+}
+
+.button {
+  font-family: StratosSkyeng, sans-serif;
+  width: 246px;
+  height: 50px;
+  background-color: #7ac100;
+  border: none;
+  border-radius: 12px;
+  color: $text-color;
+  font-size: 24px;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.header {
+  min-height: 155px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer {
+  width: 155px;
+  height: 91px;
+  color: $text-color;
+
+  &__text {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 57px;
+    font-size: 16px;
+    padding-right: 5px;
+  }
+
+  &__count {
+    font-size: 64px;
+    line-height: 72px;
+  }
 }
 
 .info {
-    width: 480px;
-    height: 459px;
-    margin: 158px auto;
-    border-radius: 12px;
-    background-color: #C2F5FF;
+  width: 480px;
+  height: 459px;
+  margin: 158px auto;
+  border-radius: 12px;
+  background-color: #c2f5ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    color: #004980;
+    text-align: center;
+    font-size: 40px;
+    line-height: 48px;
+    margin-top: 52px;
+  }
+
+  &__form {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
 
+  &__level {
+    display: flex;
+    gap: 26px;
+    flex-direction: row;
+    justify-content: center;
 
-    &__title {
-        color: #004980;
-        text-align: center;
-        font-size: 40px;
-        line-height: 48px;
-        margin-top: 52px;
+    & input[type='radio'] {
+      display: none;
     }
 
-    &__form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    & input[type='radio']:checked + label {
+      border: $border;
+    }
+  }
+
+  &__level-choice {
+    width: 98px;
+    height: 98px;
+    background-color: #fff;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 64px;
+    line-height: 72px;
+    color: #0080c1;
+    cursor: pointer;
+
+    &:hover {
+      border: $border;
+    }
+  }
+
+  &__go-button {
+    margin-top: 67px;
+    margin-bottom: 50px;
+  }
+}
+
+.game-field {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-column-gap: 9px;
+  grid-row-gap: 10px;
+  margin-bottom: 30px;
+}
+
+.card {
+  width: 95px;
+  height: 133px;
+
+  &__front {
+    width: inherit;
+    height: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__top {
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 6px;
+
+    &_flipped {
+      rotate: (180deg);
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__suites {
+    display: flex;
+    justify-content: center;
+
+    & img {
+      width: 29px;
+      height: 25px;
     }
 
-    &__level {
-        display: flex;
-        gap: 26px;
-        flex-direction: row;
-        justify-content: center;
-
-        & input[type=radio] {
-            display: none;
-        }
-
-        & input[type=radio]:checked+label {
-            border: $border;
-        }
+    &_small {
+      width: 7px;
+      height: 6px;
+      margin-left: 3px;
     }
-
-    &__level-choice {
-        width: 98px;
-        height: 98px;
-        background-color: #fff;
-        border-radius: 12px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        font-size: 64px;
-        line-height: 72px;
-        color: #0080C1;
-        cursor: pointer;
-
-        &:hover {
-            border: $border;
-        }
-    }
-
-    &__go {
-        font-family: StratosSkyeng;
-        width: 246px;
-        height: 50px;
-        margin-top: 67px;
-        margin-bottom: 50px;
-        background-color: #7AC100;
-        border: none;
-        border-radius: 12px;
-        box-sizing: border-box;
-        color: #fff;
-        font-size: 24px;
-        line-height: 32px;
-        cursor: pointer;
-    }
+  }
 }
