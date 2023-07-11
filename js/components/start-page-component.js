@@ -34,6 +34,7 @@ export const renderStartPage = (appElem) => {
       gameComps.difficultyLevel = difLevelBtnElem.value;
 
       goButton.addEventListener('click', (event) => {
+        event.preventDefault();
         event.stopPropagation();
 
         if (gameComps.difficultyLevel === 'easy') {
