@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { gameComps } from '../index.js';
+import { gameComps, getCardRank, getCardSuit } from '../index.js';
 import { gameContainer } from '../index.js';
 
 export const renderGame = () => {
@@ -16,13 +16,35 @@ export const renderGame = () => {
       </header>`;
 
   const cardsHtml = gameComps.cardDeck
-    .map(() => {
+    .map((card) => {
+      let suit = '',
+        rank = '';
+
       return gameComps.difficultyLevel === 'easy'
-        ? `<div class="card-back">
+        ? `<div class="card">
           <img src="./img/card-back.svg" alt="карта" />
         </div>`
-        : `<div class="card-back">
-        <img src="" alt="карта" />
+        : `<div class="card">
+        <div class="card__front">
+          <div class="card__top">
+            <div class="card__title">${getCardRank(card, rank)}</div>
+            <img class="card__suites_small" src="./img/${getCardSuit(
+              card,
+              suit
+            )}.svg" alt="" />
+          </div>
+          <div class="card__suites">
+            <img src="./img/${getCardSuit(card, suit)}.svg" alt="" />
+          </div>
+          <div class="card__top card__top_flipped">
+            <div class="card__title">${getCardRank(card, rank)}</div>
+            <img class="card__suites_small" src="./img/${getCardSuit(
+              card,
+              suit
+            )}.svg" alt="" />
+          </div>
+          <div></div>
+        </div>
       </div>`;
     })
     .join('');

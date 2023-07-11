@@ -139,7 +139,49 @@ body {
   margin-bottom: 30px;
 }
 
-.card-back {
+.card {
   width: 95px;
   height: 133px;
+
+  &__front {
+    width: inherit;
+    height: inherit;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__top {
+    height: 55px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 6px;
+
+    &_flipped {
+      rotate: (180deg);
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  &__suites {
+    display: flex;
+    justify-content: center;
+
+    & img {
+      width: 29px;
+      height: 25px;
+    }
+
+    &_small {
+      width: 7px;
+      height: 6px;
+      margin-left: 3px;
+    }
+  }
 }

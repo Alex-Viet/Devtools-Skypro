@@ -124,7 +124,42 @@ body {
   margin-bottom: 30px;
 }
 
-.card-back {
+.card {
   width: 95px;
   height: 133px;
+}
+.card__front {
+  width: inherit;
+  height: inherit;
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card__top {
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 6px;
+}
+.card__top_flipped {
+  rotate: 180deg;
+}
+.card__title {
+  font-size: 24px;
+  line-height: 32px;
+}
+.card__suites {
+  display: flex;
+  justify-content: center;
+}
+.card__suites img {
+  width: 29px;
+  height: 25px;
+}
+.card__suites_small {
+  width: 7px;
+  height: 6px;
+  margin-left: 3px;
 }/*# sourceMappingURL=style.css.map */
