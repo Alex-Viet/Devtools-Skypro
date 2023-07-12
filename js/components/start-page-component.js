@@ -37,13 +37,7 @@ export const renderStartPage = (appElem) => {
         event.preventDefault();
         event.stopPropagation();
 
-        if (gameComps.difficultyLevel === 'easy') {
-          renderGame();
-        }
-
-        if (gameComps.difficultyLevel === 'medium') {
-          renderGame();
-        }
+        renderGame();
       });
     });
   }

@@ -5,7 +5,7 @@ export let gameComps = {
   gameTime: 0,
   cardSuits: ['diamonds', 'hearts', 'clubs', 'spades'],
   cardRanks: ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-  gameFieldSize: 36,
+  gameFieldSize: [6, 12, 18],
   cardDeck: [],
 };
 
@@ -13,12 +13,14 @@ export const gameContainer = document.getElementById('app');
 
 renderStartPage(gameContainer);
 
-// function getRandomCards(max) {
-//   return Math.floor(Math.random() * max);
-// }
+function getRandomCards(max) {
+  return Math.floor(Math.random() * max);
+}
 
-for (let i = 0; i < gameComps.gameFieldSize; i++) {
-  gameComps.cardDeck[i] = i + 1;
+export function setFieldSize(fieldSize) {
+  for (let i = 0; i < fieldSize; i++) {
+    gameComps.cardDeck[i] = getRandomCards(fieldSize);
+  }
 }
 
 export const getCardSuit = (card, suit) => {
