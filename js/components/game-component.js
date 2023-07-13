@@ -1,13 +1,20 @@
-import { gameComps, getCardRank, getCardSuit, setFieldSize } from '../index.js';
+import {
+  game,
+  getCardRank,
+  getCardSuit,
+  getRandomCards,
+  resetGame,
+} from '../index.js';
 import { gameContainer } from '../index.js';
+// import { renderStartPage } from './start-page-component.js';
 
 export const renderGame = () => {
-  if (gameComps.difficultyLevel === 'easy') {
-    setFieldSize(gameComps.gameFieldSize[0]);
-  } else if (gameComps.difficultyLevel === 'medium') {
-    setFieldSize(gameComps.gameFieldSize[1]);
+  if (game.difficultyLevel === 'easy') {
+    getRandomCards(game.fieldSize[0]);
+  } else if (game.difficultyLevel === 'medium') {
+    getRandomCards(game.fieldSize[1]);
   } else {
-    setFieldSize(gameComps.gameFieldSize[2]);
+    getRandomCards(game.fieldSize[2]);
   }
 
   const headerHtml = `
@@ -22,7 +29,7 @@ export const renderGame = () => {
         <button class="header__button button">Начать заново</button>
       </header>`;
 
-  const cardsHtml = gameComps.cardDeck
+  const cardsHtml = game.cardDeck
     .map((card) => {
       let suit = '',
         rank = '';
@@ -60,6 +67,10 @@ export const renderGame = () => {
       </section>`;
 
   gameContainer.innerHTML = gameHtml;
+
+  const newGameButton = document.querySelector('.button');
+
+  newGameButton.addEventListener('click', resetGame);
 };
 
 // const tempCardsBack = `<div class="card">
