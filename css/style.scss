@@ -155,6 +155,10 @@ body {
     justify-content: space-between;
   }
 
+  &__back {
+    display: none;
+  }
+
   &__top {
     height: 55px;
     display: flex;

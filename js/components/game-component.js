@@ -6,7 +6,6 @@ import {
   resetGame,
 } from '../index.js';
 import { gameContainer } from '../index.js';
-// import { renderStartPage } from './start-page-component.js';
 
 export const renderGame = () => {
   if (game.difficultyLevel === 'easy') {
@@ -36,6 +35,9 @@ export const renderGame = () => {
 
       return `
           <div class="card">
+            <div class="card__back">
+              <img src="./img/card-back.svg" alt="карта" />
+            </div>
             <div class="card__front">
               <div class="card__top">
                 <div class="card__title">${getCardRank(card, rank)}</div>
@@ -68,34 +70,20 @@ export const renderGame = () => {
 
   gameContainer.innerHTML = gameHtml;
 
+  const cardsFront = document.querySelectorAll('.card__front');
+  const cardsBack = document.querySelectorAll('.card__back');
+
+  setTimeout(() => {
+    for (const cardFront of cardsFront) {
+      cardFront.style.display = 'none';
+    }
+
+    for (const cardBack of cardsBack) {
+      cardBack.style.display = 'flex';
+    }
+  }, 5000);
+
   const newGameButton = document.querySelector('.button');
 
   newGameButton.addEventListener('click', resetGame);
 };
-
-// const tempCardsBack = `<div class="card">
-// <img src="./img/card-back.svg" alt="карта" />
-// </div>`;
-
-// const tempCardsFace = `<div class="card">
-// <div class="card__front">
-//   <div class="card__top">
-//     <div class="card__title">${getCardRank(card, rank)}</div>
-//     <img class="card__suites_small" src="./img/${getCardSuit(
-//       card,
-//       suit
-//     )}.svg" alt="" />
-//   </div>
-//   <div class="card__suites">
-//     <img src="./img/${getCardSuit(card, suit)}.svg" alt="" />
-//   </div>
-//   <div class="card__top card__top_flipped">
-//     <div class="card__title">${getCardRank(card, rank)}</div>
-//     <img class="card__suites_small" src="./img/${getCardSuit(
-//       card,
-//       suit
-//     )}.svg" alt="" />
-//   </div>
-//   <div></div>
-// </div>
-// </div>`;

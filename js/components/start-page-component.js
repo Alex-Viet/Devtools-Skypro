@@ -38,7 +38,6 @@ export const renderStartPage = (appElem) => {
         event.stopPropagation();
 
         renderGame();
-        console.log(game.difficultyLevel);
       });
     });
   }

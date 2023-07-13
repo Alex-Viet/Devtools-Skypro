@@ -139,6 +139,9 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+.card__back {
+  display: none;
+}
 .card__top {
   height: 55px;
   display: flex;

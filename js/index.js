@@ -13,8 +13,6 @@ export const gameContainer = document.getElementById('app');
 
 renderStartPage(gameContainer);
 
-console.log(game.cardDeck);
-
 export function getRandomCards(fieldSize) {
   for (let i = 0; i < fieldSize; i = i + 2) {
     let n;
