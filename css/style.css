@@ -141,6 +141,7 @@ body {
 }
 .card__back {
   display: none;
+  cursor: pointer;
 }
 .card__top {
   height: 55px;

@@ -29,15 +29,15 @@ export const renderGame = () => {
       </header>`;
 
   const cardsHtml = game.cardDeck
-    .map((card) => {
+    .map((card, index) => {
       let suit = '',
         rank = '';
 
       return `
-          <div class="card">
-            <div class="card__back">
-              <img src="./img/card-back.svg" alt="карта" />
-            </div>
+          <div class="card__back" data-index="${index}">
+            <img src="./img/card-back.svg" alt="карта" />
+          </div>
+          <div class="card" data-index="${index}">
             <div class="card__front">
               <div class="card__top">
                 <div class="card__title">${getCardRank(card, rank)}</div>
@@ -70,8 +70,9 @@ export const renderGame = () => {
 
   gameContainer.innerHTML = gameHtml;
 
-  const cardsFront = document.querySelectorAll('.card__front');
+  const cardsFront = document.querySelectorAll('.card');
   const cardsBack = document.querySelectorAll('.card__back');
+  // const cardButtons = document.querySelectorAll('.card');
 
   setTimeout(() => {
     for (const cardFront of cardsFront) {
@@ -82,6 +83,21 @@ export const renderGame = () => {
       cardBack.style.display = 'flex';
     }
   }, 5000);
+
+  for (const cardBack of cardsBack) {
+    cardBack.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const backCardIndex = cardBack.dataset.index;
+      cardBack.style.display = 'none';
+
+      for (const cardFront of cardsFront) {
+        const frontCardIndex = cardFront.dataset.index;
+        if (frontCardIndex === backCardIndex) {
+          cardFront.style.display = 'flex';
+        }
+      }
+    });
+  }
 
   const newGameButton = document.querySelector('.button');
 
