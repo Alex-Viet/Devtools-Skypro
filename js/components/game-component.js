@@ -37,7 +37,7 @@ export const renderGame = () => {
           <div class="card__back" data-index="${index}">
             <img src="./img/card-back.svg" alt="карта" />
           </div>
-          <div class="card" data-index="${index}">
+          <div class="card" data-index="${index}" data-card="${card}">
             <div class="card__front">
               <div class="card__top">
                 <div class="card__title">${getCardRank(card, rank)}</div>
@@ -82,7 +82,7 @@ export const renderGame = () => {
     for (const cardBack of cardsBack) {
       cardBack.style.display = 'flex';
     }
-  }, 5000);
+  }, 1000);
 
   for (const cardBack of cardsBack) {
     cardBack.addEventListener('click', (event) => {
@@ -92,10 +92,18 @@ export const renderGame = () => {
 
       for (const cardFront of cardsFront) {
         const frontCardIndex = cardFront.dataset.index;
+        const card = cardFront.dataset.card;
+
         if (frontCardIndex === backCardIndex) {
           cardFront.style.display = 'flex';
+          game.selectedCards.push(cardFront);
         }
+
+        console.log(card);
       }
+
+      console.log(game.selectedCards[0]);
+      console.log(game.selectedCards[1]);
     });
   }
 

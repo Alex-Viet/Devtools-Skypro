@@ -7,6 +7,7 @@ export let game = {
   cardRanks: ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
   fieldSize: [6, 12, 18],
   cardDeck: [],
+  selectedCards: [],
 };
 
 export const gameContainer = document.getElementById('app');
