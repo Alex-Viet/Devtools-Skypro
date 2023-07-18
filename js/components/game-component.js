@@ -6,6 +6,7 @@ import {
   resetGame,
 } from '../index.js';
 import { gameContainer } from '../index.js';
+import { renderStartPage } from './start-page-component.js';
 
 export const renderGame = () => {
   if (game.difficultyLevel === 'easy') {
@@ -37,7 +38,7 @@ export const renderGame = () => {
           <div class="card__back" data-index="${index}">
             <img src="./img/card-back.svg" alt="карта" />
           </div>
-          <div class="card" data-index="${index}" data-card="${card}">
+          <div class="card" data-index="${index}">
             <div class="card__front">
               <div class="card__top">
                 <div class="card__title">${getCardRank(card, rank)}</div>
@@ -72,7 +73,6 @@ export const renderGame = () => {
 
   const cardsFront = document.querySelectorAll('.card');
   const cardsBack = document.querySelectorAll('.card__back');
-  // const cardButtons = document.querySelectorAll('.card');
 
   setTimeout(() => {
     for (const cardFront of cardsFront) {
@@ -82,7 +82,7 @@ export const renderGame = () => {
     for (const cardBack of cardsBack) {
       cardBack.style.display = 'flex';
     }
-  }, 1000);
+  }, 5000);
 
   for (const cardBack of cardsBack) {
     cardBack.addEventListener('click', (event) => {
@@ -92,18 +92,27 @@ export const renderGame = () => {
 
       for (const cardFront of cardsFront) {
         const frontCardIndex = cardFront.dataset.index;
-        const card = cardFront.dataset.card;
-
+        const card = game.cardDeck[frontCardIndex];
         if (frontCardIndex === backCardIndex) {
           cardFront.style.display = 'flex';
+          cardFront.setAttribute('data-card', card);
           game.selectedCards.push(cardFront);
+
+          if (game.selectedCards.length === 2) {
+            const firstCard = game.selectedCards[0].dataset.card;
+            const secondCard = game.selectedCards[1].dataset.card;
+
+            if (firstCard === secondCard) {
+              alert('Вы победили!');
+              game.selectedCards = [];
+            } else {
+              alert('Вы проиграли!');
+              renderStartPage(gameContainer);
+              resetGame();
+            }
+          }
         }
-
-        console.log(card);
       }
-
-      console.log(game.selectedCards[0]);
-      console.log(game.selectedCards[1]);
     });
   }
 

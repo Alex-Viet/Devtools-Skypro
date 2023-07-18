@@ -26,8 +26,6 @@ export function getRandomCards(fieldSize) {
     game.cardDeck[i + 1] = n;
     shuffle(game.cardDeck);
   }
-
-  console.log(game.cardDeck);
 }
 
 function shuffle(array) {
@@ -78,6 +76,7 @@ export const getCardRank = (card, rank) => {
 
 export function resetGame() {
   game.cardDeck = [];
+  game.selectedCards = [];
   game.difficultyLevel = '';
   game.gameTime = 0;
 
