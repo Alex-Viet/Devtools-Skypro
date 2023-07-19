@@ -1,35 +1,51 @@
 import { renderStartPage } from './components/start-page-component.js';
+import '../css/style.css';
 
-export let gameComps = {
+export let game = {
   difficultyLevel: '',
   gameTime: 0,
   cardSuits: ['diamonds', 'hearts', 'clubs', 'spades'],
   cardRanks: ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
-  gameFieldSize: 36,
+  fieldSize: [6, 12, 18],
   cardDeck: [],
+  selectedCards: [],
 };
 
 export const gameContainer = document.getElementById('app');
 
 renderStartPage(gameContainer);
 
-// function getRandomCards(max) {
-//   return Math.floor(Math.random() * max);
-// }
+export function getRandomCards(fieldSize) {
+  for (let i = 0; i < fieldSize; i += 2) {
+    let n;
 
-for (let i = 0; i < gameComps.gameFieldSize; i++) {
-  gameComps.cardDeck[i] = i + 1;
+    do {
+      n = Math.floor(Math.random() * 37);
+    } while (game.cardDeck.includes(n));
+
+    game.cardDeck[i] = n;
+    game.cardDeck[i + 1] = n;
+    shuffle(game.cardDeck);
+  }
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
 
 export const getCardSuit = (card, suit) => {
   if (card > 0 && card <= 9) {
-    suit = gameComps.cardSuits[3];
+    suit = game.cardSuits[3];
   } else if (card > 9 && card <= 18) {
-    suit = gameComps.cardSuits[1];
+    suit = game.cardSuits[1];
   } else if (card > 18 && card <= 27) {
-    suit = gameComps.cardSuits[0];
+    suit = game.cardSuits[0];
   } else {
-    suit = gameComps.cardSuits[2];
+    suit = game.cardSuits[2];
   }
 
   return suit;
@@ -37,24 +53,33 @@ export const getCardSuit = (card, suit) => {
 
 export const getCardRank = (card, rank) => {
   if (card === 1 || card === 10 || card === 19 || card === 28) {
-    rank = gameComps.cardRanks[8];
+    rank = game.cardRanks[8];
   } else if (card === 2 || card === 11 || card === 20 || card === 29) {
-    rank = gameComps.cardRanks[7];
+    rank = game.cardRanks[7];
   } else if (card === 3 || card === 12 || card === 21 || card === 30) {
-    rank = gameComps.cardRanks[6];
+    rank = game.cardRanks[6];
   } else if (card === 4 || card === 13 || card === 22 || card === 31) {
-    rank = gameComps.cardRanks[5];
+    rank = game.cardRanks[5];
   } else if (card === 5 || card === 14 || card === 23 || card === 32) {
-    rank = gameComps.cardRanks[4];
+    rank = game.cardRanks[4];
   } else if (card === 6 || card === 15 || card === 24 || card === 33) {
-    rank = gameComps.cardRanks[3];
+    rank = game.cardRanks[3];
   } else if (card === 7 || card === 16 || card === 25 || card === 34) {
-    rank = gameComps.cardRanks[2];
+    rank = game.cardRanks[2];
   } else if (card === 8 || card === 17 || card === 26 || card === 35) {
-    rank = gameComps.cardRanks[1];
+    rank = game.cardRanks[1];
   } else {
-    rank = gameComps.cardRanks[0];
+    rank = game.cardRanks[0];
   }
 
   return rank;
 };
+
+export function resetGame() {
+  game.cardDeck = [];
+  game.selectedCards = [];
+  game.difficultyLevel = '';
+  game.gameTime = 0;
+
+  renderStartPage(gameContainer);
+}

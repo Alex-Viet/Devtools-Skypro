@@ -20,6 +20,7 @@ body {
   padding: 0 25px;
   margin: 0 auto;
   max-width: 1024px;
+  height: 100vh;
 }
 
 .button {
@@ -121,6 +122,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
   grid-column-gap: 9px;
   grid-row-gap: 10px;
+  justify-items: center;
   margin-bottom: 30px;
 }
 
@@ -136,6 +138,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.card__back {
+  display: none;
+  cursor: pointer;
 }
 .card__top {
   height: 55px;

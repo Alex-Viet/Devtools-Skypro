@@ -1,4 +1,4 @@
-import { gameComps } from '../index.js';
+import { game } from '../index.js';
 import { renderGame } from './game-component.js';
 
 export const renderStartPage = (appElem) => {
@@ -31,19 +31,13 @@ export const renderStartPage = (appElem) => {
   for (const difLevelBtnElem of difLevelBtnElems) {
     difLevelBtnElem.addEventListener('click', (event) => {
       event.stopPropagation();
-      gameComps.difficultyLevel = difLevelBtnElem.value;
+      game.difficultyLevel = difLevelBtnElem.value;
 
       goButton.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
 
-        if (gameComps.difficultyLevel === 'easy') {
-          renderGame();
-        }
-
-        if (gameComps.difficultyLevel === 'medium') {
-          renderGame();
-        }
+        renderGame();
       });
     });
   }
