@@ -1,4 +1,5 @@
 import { renderStartPage } from './components/start-page-component.js';
+import '../css/style.css';
 
 export let game = {
   difficultyLevel: '',
@@ -15,7 +16,7 @@ export const gameContainer = document.getElementById('app');
 renderStartPage(gameContainer);
 
 export function getRandomCards(fieldSize) {
-  for (let i = 0; i < fieldSize; i = i + 2) {
+  for (let i = 0; i < fieldSize; i += 2) {
     let n;
 
     do {

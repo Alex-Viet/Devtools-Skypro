@@ -36,23 +36,23 @@ export const renderGame = () => {
 
       return `
           <div class="card__back" data-index="${index}">
-            <img src="./img/card-back.svg" alt="карта" />
+            <img src="./static/card-back.svg" alt="карта" />
           </div>
           <div class="card" data-index="${index}">
             <div class="card__front">
               <div class="card__top">
                 <div class="card__title">${getCardRank(card, rank)}</div>
-                <img class="card__suites_small" src="./img/${getCardSuit(
+                <img class="card__suites_small" src="./static/${getCardSuit(
                   card,
                   suit
                 )}.svg" alt="" />
               </div>
               <div class="card__suites">
-                <img src="./img/${getCardSuit(card, suit)}.svg" alt="" />
+                <img src="./static/${getCardSuit(card, suit)}.svg" alt="" />
               </div>
               <div class="card__top card__top_flipped">
                 <div class="card__title">${getCardRank(card, rank)}</div>
-                <img class="card__suites_small" src="./img/${getCardSuit(
+                <img class="card__suites_small" src="./static/${getCardSuit(
                   card,
                   suit
                 )}.svg" alt="" />
