@@ -9,6 +9,7 @@ export let game = {
   fieldSize: [6, 12, 18],
   cardDeck: [],
   selectedCards: [],
+  status: '',
 };
 
 export const gameContainer = document.getElementById('app');
@@ -80,6 +81,7 @@ export function resetGame() {
   game.selectedCards = [];
   game.difficultyLevel = '';
   game.gameTime = 0;
+  game.status = '';
 
   renderStartPage(gameContainer);
 }

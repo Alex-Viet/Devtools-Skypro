@@ -6,9 +6,10 @@ import {
   resetGame,
 } from '../index.js';
 import { gameContainer } from '../index.js';
-import { renderStartPage } from './start-page-component.js';
+import { moduleElem, renderResultModule } from './result-component.js';
 
 export const renderGame = () => {
+  game.status = 'start';
   if (game.difficultyLevel === 'easy') {
     getRandomCards(game.fieldSize[0]);
   } else if (game.difficultyLevel === 'medium') {
@@ -26,7 +27,7 @@ export const renderGame = () => {
           </div>
           <div class="timer__count">00.00</div>
         </div>
-        <button class="header__button button">Начать заново</button>
+        <button class="button" id="button-go">Начать заново</button>
       </header>`;
 
   const cardsHtml = game.cardDeck
@@ -82,7 +83,7 @@ export const renderGame = () => {
     for (const cardBack of cardsBack) {
       cardBack.style.display = 'flex';
     }
-  }, 5000);
+  }, 1000);
 
   for (const cardBack of cardsBack) {
     cardBack.addEventListener('click', (event) => {
@@ -103,12 +104,14 @@ export const renderGame = () => {
             const secondCard = game.selectedCards[1].dataset.card;
 
             if (firstCard === secondCard) {
-              alert('Вы победили!');
+              // game.status = 'win';
+              // moduleElem.style.display = 'flex';
+              // renderResultModule();
               game.selectedCards = [];
             } else {
-              alert('Вы проиграли!');
-              renderStartPage(gameContainer);
-              resetGame();
+              game.status = 'lost';
+              moduleElem.style.display = 'flex';
+              renderResultModule();
             }
           }
         }
@@ -117,6 +120,5 @@ export const renderGame = () => {
   }
 
   const newGameButton = document.querySelector('.button');
-
   newGameButton.addEventListener('click', resetGame);
 };

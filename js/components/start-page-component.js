@@ -2,6 +2,7 @@ import { game } from '../index.js';
 import { renderGame } from './game-component.js';
 
 export const renderStartPage = (appElem) => {
+  game.status = 'level';
   const startPageHtml = `
       <div class="info">
         <p class="info__title">
