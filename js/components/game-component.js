@@ -8,6 +8,8 @@ import {
 import { gameContainer } from '../index.js';
 import { moduleElem, renderResultModule } from './result-component.js';
 
+let matchedCardsCount = 0;
+
 export const renderGame = () => {
   game.status = 'start';
   if (game.difficultyLevel === 'easy') {
@@ -94,6 +96,7 @@ export const renderGame = () => {
       for (const cardFront of cardsFront) {
         const frontCardIndex = cardFront.dataset.index;
         const card = game.cardDeck[frontCardIndex];
+
         if (frontCardIndex === backCardIndex) {
           cardFront.style.display = 'flex';
           cardFront.setAttribute('data-card', card);
@@ -104,14 +107,23 @@ export const renderGame = () => {
             const secondCard = game.selectedCards[1].dataset.card;
 
             if (firstCard === secondCard) {
-              // game.status = 'win';
-              // moduleElem.style.display = 'flex';
-              // renderResultModule();
+              matchedCardsCount += 2;
+              console.log(matchedCardsCount);
+              console.log(game.cardDeck);
+
+              if (matchedCardsCount === game.cardDeck.length) {
+                game.status = 'win';
+                moduleElem.style.display = 'flex';
+                renderResultModule();
+                matchedCardsCount = 0;
+              }
+
               game.selectedCards = [];
             } else {
               game.status = 'lost';
               moduleElem.style.display = 'flex';
               renderResultModule();
+              matchedCardsCount = 0;
             }
           }
         }
