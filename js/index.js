@@ -3,7 +3,7 @@ import '../css/style.css';
 
 export let game = {
   difficultyLevel: '',
-  gameTime: 0,
+  gameTime: '00.00',
   cardSuits: ['diamonds', 'hearts', 'clubs', 'spades'],
   cardRanks: ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'],
   fieldSize: [6, 12, 18],
@@ -80,8 +80,8 @@ export function resetGame() {
   game.cardDeck = [];
   game.selectedCards = [];
   game.difficultyLevel = '';
-  game.gameTime = 0;
-  game.status = '';
+  game.gameTime = '00.00';
+  game.status = 'level';
 
   renderStartPage(gameContainer);
 }

@@ -13,7 +13,7 @@ export const renderResultModule = () => {
       }</p>
       <p class="info__time-title">Затраченное время:</p>
       <div class="timer">
-        <div class="timer__count result__count">01.20</div>
+        <div class="timer__count result__count">${game.gameTime}</div>
       </div>
       <div>
         <button type="submit" class="result__go-button button" id="button-go">

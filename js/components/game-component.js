@@ -9,9 +9,9 @@ import { gameContainer } from '../index.js';
 import { moduleElem, renderResultModule } from './result-component.js';
 
 let matchedCardsCount = 0;
+let counter = 0;
 
 export const renderGame = () => {
-  game.status = 'start';
   if (game.difficultyLevel === 'easy') {
     getRandomCards(game.fieldSize[0]);
   } else if (game.difficultyLevel === 'medium') {
@@ -27,7 +27,7 @@ export const renderGame = () => {
             <div class="timer__min">min</div>
             <div class="timer__sec">sek</div>
           </div>
-          <div class="timer__count">00.00</div>
+          <div class="timer__count">${game.gameTime}</div>
         </div>
         <button class="button" id="button-go">Начать заново</button>
       </header>`;
@@ -85,7 +85,29 @@ export const renderGame = () => {
     for (const cardBack of cardsBack) {
       cardBack.style.display = 'flex';
     }
-  }, 1000);
+
+    game.status = 'start';
+    const timer = setInterval(() => {
+      if (
+        game.status === 'win' ||
+        game.status === 'lost' ||
+        game.status === 'level'
+      ) {
+        clearInterval(timer);
+        return;
+      }
+      counter++;
+      const minutes = Math.floor(counter / 60)
+        .toString()
+        .padStart(2, '0');
+      const seconds = (counter % 60).toString().padStart(2, '0');
+      const timeCount = document.querySelector('.timer__count');
+
+      game.gameTime = `${minutes}.${seconds}`;
+      timeCount.textContent = game.gameTime;
+    }, 1000);
+    counter = 0;
+  }, 5000);
 
   for (const cardBack of cardsBack) {
     cardBack.addEventListener('click', (event) => {
@@ -108,8 +130,6 @@ export const renderGame = () => {
 
             if (firstCard === secondCard) {
               matchedCardsCount += 2;
-              console.log(matchedCardsCount);
-              console.log(game.cardDeck);
 
               if (matchedCardsCount === game.cardDeck.length) {
                 game.status = 'win';
@@ -131,6 +151,8 @@ export const renderGame = () => {
     });
   }
 
-  const newGameButton = document.querySelector('.button');
-  newGameButton.addEventListener('click', resetGame);
+  const newGameBtn = document.getElementById('button-go');
+  newGameBtn.addEventListener('click', () => {
+    resetGame();
+  });
 };
