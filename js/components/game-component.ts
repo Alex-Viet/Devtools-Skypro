@@ -4,13 +4,13 @@ import {
   getCardSuit,
   getRandomCards,
   resetGame,
-} from '../index.js';
-import { gameContainer } from '../index.js';
-import { moduleElem, renderResultModule } from './result-component.js';
+} from '../index';
+import { gameContainer } from '../index';
+import { moduleElem, renderResultModule } from './result-component';
 
 let matchedCardsCount = 0,
   counter = 0,
-  timerId;
+  timerId: any;
 
 export function resetTimer() {
   clearTimeout(timerId);
@@ -83,11 +83,11 @@ export const renderGame = () => {
   const cardsBack = document.querySelectorAll('.card__back');
 
   timerId = setTimeout(() => {
-    for (const cardFront of cardsFront) {
+    for (const cardFront of cardsFront as any) {
       cardFront.style.display = 'none';
     }
 
-    for (const cardBack of cardsBack) {
+    for (const cardBack of cardsBack as any) {
       cardBack.style.display = 'flex';
     }
 
@@ -106,7 +106,7 @@ export const renderGame = () => {
         .toString()
         .padStart(2, '0');
       const seconds = (counter % 60).toString().padStart(2, '0');
-      const timeCount = document.querySelector('.timer__count');
+      const timeCount = <HTMLElement>document.querySelector('.timer__count');
 
       game.gameTime = `${minutes}.${seconds}`;
       timeCount.textContent = game.gameTime;
@@ -114,13 +114,13 @@ export const renderGame = () => {
     counter = 0;
   }, 5000);
 
-  for (const cardBack of cardsBack) {
-    cardBack.addEventListener('click', (event) => {
+  for (const cardBack of cardsBack as any) {
+    cardBack.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
       const backCardIndex = cardBack.dataset.index;
       cardBack.style.display = 'none';
 
-      for (const cardFront of cardsFront) {
+      for (const cardFront of cardsFront as any) {
         const frontCardIndex = cardFront.dataset.index;
         const card = game.cardDeck[frontCardIndex];
 
@@ -156,7 +156,7 @@ export const renderGame = () => {
     });
   }
 
-  const newGameBtn = document.getElementById('button-go');
+  const newGameBtn = <HTMLElement>document.getElementById('button-go');
   newGameBtn.addEventListener('click', () => {
     resetGame();
   });

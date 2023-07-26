@@ -1,8 +1,19 @@
-import { renderStartPage } from './components/start-page-component.js';
+import { renderStartPage } from './components/start-page-component';
 import '../css/style.css';
-import { resetTimer } from './components/game-component.js';
+import { resetTimer } from './components/game-component';
 
-export let game = {
+type Game = {
+  difficultyLevel: string;
+  gameTime: string;
+  cardSuits: string[];
+  cardRanks: string[];
+  fieldSize: number[];
+  cardDeck: number[];
+  selectedCards: any[];
+  status: string;
+};
+
+export let game: Game = {
   difficultyLevel: '',
   gameTime: '00.00',
   cardSuits: ['diamonds', 'hearts', 'clubs', 'spades'],
@@ -13,11 +24,11 @@ export let game = {
   status: '',
 };
 
-export const gameContainer = document.getElementById('app');
+export const gameContainer = document.getElementById('app') as HTMLElement;
 
 renderStartPage(gameContainer);
 
-export function getRandomCards(fieldSize) {
+export function getRandomCards(fieldSize: number) {
   for (let i = 0; i < fieldSize; i += 2) {
     let n;
 
@@ -31,7 +42,7 @@ export function getRandomCards(fieldSize) {
   }
 }
 
-function shuffle(array) {
+function shuffle(array: number[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
@@ -39,7 +50,7 @@ function shuffle(array) {
   return array;
 }
 
-export const getCardSuit = (card, suit) => {
+export const getCardSuit = (card: number, suit: string) => {
   if (card > 0 && card <= 9) {
     suit = game.cardSuits[3];
   } else if (card > 9 && card <= 18) {
@@ -53,7 +64,7 @@ export const getCardSuit = (card, suit) => {
   return suit;
 };
 
-export const getCardRank = (card, rank) => {
+export const getCardRank = (card: number, rank: string) => {
   if (card === 1 || card === 10 || card === 19 || card === 28) {
     rank = game.cardRanks[8];
   } else if (card === 2 || card === 11 || card === 20 || card === 29) {

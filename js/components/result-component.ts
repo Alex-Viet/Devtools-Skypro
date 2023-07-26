@@ -1,6 +1,6 @@
-import { game, resetGame } from '../index.js';
+import { game, resetGame } from '../index';
 
-export const moduleElem = document.querySelector('.module');
+export const moduleElem = <HTMLElement>document.querySelector('.module');
 
 export const renderResultModule = () => {
   const gameResultHtml = `
@@ -24,7 +24,9 @@ export const renderResultModule = () => {
 
   moduleElem.innerHTML = gameResultHtml;
 
-  const newGameButton = document.querySelector('.result__go-button');
+  const newGameButton = document.querySelector(
+    '.result__go-button'
+  ) as HTMLElement;
 
   newGameButton.addEventListener('click', () => {
     moduleElem.style.display = 'none';
