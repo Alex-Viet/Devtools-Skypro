@@ -1,5 +1,6 @@
 import { renderStartPage } from './components/start-page-component.js';
 import '../css/style.css';
+import { resetTimer } from './components/game-component.js';
 
 export let game = {
   difficultyLevel: '',
@@ -83,5 +84,6 @@ export function resetGame() {
   game.gameTime = '00.00';
   game.status = 'level';
 
+  resetTimer();
   renderStartPage(gameContainer);
 }

@@ -8,8 +8,13 @@ import {
 import { gameContainer } from '../index.js';
 import { moduleElem, renderResultModule } from './result-component.js';
 
-let matchedCardsCount = 0;
-let counter = 0;
+let matchedCardsCount = 0,
+  counter = 0,
+  timerId;
+
+export function resetTimer() {
+  clearTimeout(timerId);
+}
 
 export const renderGame = () => {
   if (game.difficultyLevel === 'easy') {
@@ -77,7 +82,7 @@ export const renderGame = () => {
   const cardsFront = document.querySelectorAll('.card');
   const cardsBack = document.querySelectorAll('.card__back');
 
-  setTimeout(() => {
+  timerId = setTimeout(() => {
     for (const cardFront of cardsFront) {
       cardFront.style.display = 'none';
     }
