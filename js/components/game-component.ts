@@ -4,9 +4,17 @@ import {
   getCardSuit,
   getRandomCards,
   resetGame,
-} from '../index.js';
-import { gameContainer } from '../index.js';
-import { renderStartPage } from './start-page-component.js';
+} from '../index';
+import { gameContainer } from '../index';
+import { moduleElem, renderResultModule } from './result-component';
+
+let matchedCardsCount = 0,
+  counter = 0,
+  timerId: any;
+
+export function resetTimer() {
+  clearTimeout(timerId);
+}
 
 export const renderGame = () => {
   if (game.difficultyLevel === 'easy') {
@@ -24,9 +32,9 @@ export const renderGame = () => {
             <div class="timer__min">min</div>
             <div class="timer__sec">sek</div>
           </div>
-          <div class="timer__count">00.00</div>
+          <div class="timer__count">${game.gameTime}</div>
         </div>
-        <button class="header__button button">Начать заново</button>
+        <button class="button" id="button-go">Начать заново</button>
       </header>`;
 
   const cardsHtml = game.cardDeck
@@ -74,25 +82,48 @@ export const renderGame = () => {
   const cardsFront = document.querySelectorAll('.card');
   const cardsBack = document.querySelectorAll('.card__back');
 
-  setTimeout(() => {
-    for (const cardFront of cardsFront) {
+  timerId = setTimeout(() => {
+    for (const cardFront of cardsFront as any) {
       cardFront.style.display = 'none';
     }
 
-    for (const cardBack of cardsBack) {
+    for (const cardBack of cardsBack as any) {
       cardBack.style.display = 'flex';
     }
+
+    game.status = 'start';
+    const timer = setInterval(() => {
+      if (
+        game.status === 'win' ||
+        game.status === 'lost' ||
+        game.status === 'level'
+      ) {
+        clearInterval(timer);
+        return;
+      }
+      counter++;
+      const minutes = Math.floor(counter / 60)
+        .toString()
+        .padStart(2, '0');
+      const seconds = (counter % 60).toString().padStart(2, '0');
+      const timeCount = <HTMLElement>document.querySelector('.timer__count');
+
+      game.gameTime = `${minutes}.${seconds}`;
+      timeCount.textContent = game.gameTime;
+    }, 1000);
+    counter = 0;
   }, 5000);
 
-  for (const cardBack of cardsBack) {
-    cardBack.addEventListener('click', (event) => {
+  for (const cardBack of cardsBack as any) {
+    cardBack.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
       const backCardIndex = cardBack.dataset.index;
       cardBack.style.display = 'none';
 
-      for (const cardFront of cardsFront) {
+      for (const cardFront of cardsFront as any) {
         const frontCardIndex = cardFront.dataset.index;
         const card = game.cardDeck[frontCardIndex];
+
         if (frontCardIndex === backCardIndex) {
           cardFront.style.display = 'flex';
           cardFront.setAttribute('data-card', card);
@@ -103,12 +134,21 @@ export const renderGame = () => {
             const secondCard = game.selectedCards[1].dataset.card;
 
             if (firstCard === secondCard) {
-              alert('Вы победили!');
+              matchedCardsCount += 2;
+
+              if (matchedCardsCount === game.cardDeck.length) {
+                game.status = 'win';
+                moduleElem.style.display = 'flex';
+                renderResultModule();
+                matchedCardsCount = 0;
+              }
+
               game.selectedCards = [];
             } else {
-              alert('Вы проиграли!');
-              renderStartPage(gameContainer);
-              resetGame();
+              game.status = 'lost';
+              moduleElem.style.display = 'flex';
+              renderResultModule();
+              matchedCardsCount = 0;
             }
           }
         }
@@ -116,7 +156,8 @@ export const renderGame = () => {
     });
   }
 
-  const newGameButton = document.querySelector('.button');
-
-  newGameButton.addEventListener('click', resetGame);
+  const newGameBtn = <HTMLElement>document.getElementById('button-go');
+  newGameBtn.addEventListener('click', () => {
+    resetGame();
+  });
 };

@@ -1,7 +1,8 @@
-import { game } from '../index.js';
-import { renderGame } from './game-component.js';
+import { game } from '../index';
+import { renderGame } from './game-component';
 
-export const renderStartPage = (appElem) => {
+export const renderStartPage = (appElem: HTMLElement) => {
+  game.status = 'level';
   const startPageHtml = `
       <div class="info">
         <p class="info__title">
@@ -25,11 +26,11 @@ export const renderStartPage = (appElem) => {
 
   appElem.innerHTML = startPageHtml;
 
-  const goButton = document.getElementById('button-go'),
+  const goButton = document.getElementById('button-go') as HTMLElement,
     difLevelBtnElems = document.querySelectorAll('input');
 
-  for (const difLevelBtnElem of difLevelBtnElems) {
-    difLevelBtnElem.addEventListener('click', (event) => {
+  for (const difLevelBtnElem of difLevelBtnElems as any) {
+    difLevelBtnElem.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
       game.difficultyLevel = difLevelBtnElem.value;
 
