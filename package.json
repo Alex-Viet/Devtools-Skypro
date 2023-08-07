@@ -10,13 +10,14 @@
     "lint:css": "stylelint ./css/*.css",
     "lint:ts": "tsc --noEmit",
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && npm run lint:css && npm run lint:ts && npm run lint:js"
+      "pre-commit": "npm test && npm run lint:css && npm run lint:ts && npm run lint:js"
     }
   },
   "devDependencies": {
