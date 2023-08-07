@@ -106,7 +106,7 @@ export const renderGame = () => {
         .toString()
         .padStart(2, '0');
       const seconds = (counter % 60).toString().padStart(2, '0');
-      const timeCount = <HTMLElement>document.querySelector('.timer__count');
+      const timeCount = document.querySelector('.timer__count') as HTMLElement;
 
       game.gameTime = `${minutes}.${seconds}`;
       timeCount.textContent = game.gameTime;
@@ -156,7 +156,7 @@ export const renderGame = () => {
     });
   }
 
-  const newGameBtn = <HTMLElement>document.getElementById('button-go');
+  const newGameBtn = document.getElementById('button-go') as HTMLElement;
   newGameBtn.addEventListener('click', () => {
     resetGame();
   });

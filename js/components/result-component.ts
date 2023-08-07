@@ -1,6 +1,6 @@
 import { game, resetGame } from '../index';
 
-export const moduleElem = <HTMLElement>document.querySelector('.module');
+export const moduleElem = document.querySelector('.module') as HTMLElement;
 
 export const renderResultModule = () => {
   const gameResultHtml = `
