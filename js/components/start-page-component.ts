@@ -24,7 +24,9 @@ export const renderStartPage = (appElem: HTMLElement) => {
         </form>
       </div>`;
 
-  appElem.innerHTML = startPageHtml;
+  if (appElem) {
+    appElem.innerHTML = startPageHtml;
+  }
 
   const goButton = document.getElementById('button-go') as HTMLElement,
     difLevelBtnElems = document.querySelectorAll('input');
